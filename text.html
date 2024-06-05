@@ -1,0 +1,62 @@
+ here is some notes I toke based on the youtube page code:
+<ytd-playlist-panel-renderer
+  id="playlist"
+  class="style-scope ytd-watch-flexy"
+  hidden
+>
+  <div id="container" class="style-scope ytd-playlist-panel-renderer"></div
+></ytd-playlist-panel-renderer>
+
+inside the playlist element we have a container div that contains 3  elements,
+  the first contains the play list header (name, number of videos, clear button ...)
+  the the items one contain the videos of the play list
+
+<div id="container">
+  <div class="header style-scope ytd-playlist-panel-renderer"></div>
+  <div id="content-header"></div>
+  <div id="items"></div>
+</div>
+
+
+  inside the 'items' div, each video is presented on the element 'ytd-playlist-panel-video-renderer'
+
+<div id="items">
+  <ytd-playlist-panel-video-renderer
+    id="playlist-items"
+    class="style-scope ytd-playlist-panel-renderer"
+  ></ytd-playlist-panel-video-renderer>
+  <ytd-playlist-panel-video-renderer
+    id="playlist-items"
+    class="style-scope ytd-playlist-panel-renderer"
+  ></ytd-playlist-panel-video-renderer>
+</div>
+
+in side each video element there is the 'badge-shape' element that conains the duration of the video,
+    not a direct child of the 'badge-shape' but nested on a lot other elements
+<badge-shape
+  class="badge-shape-wiz badge-shape-wiz--default badge-shape-wiz--overlay badge-shape-wiz--thumbnail-badge"
+  aria-label="19 minutes, 2 seconds"
+>
+  <div class="badge-shape-wiz__text">19:02</div>
+</badge-shape>
+
+the second important element is the element that shows how much of the video has been watched,
+  is on the element 'ytd-thumbnail-overlay-resume-playback-renderer' and it contains a div with a width style in percentage,
+  that percentage is the amount watched on the video
+
+<ytd-thumbnail-overlay-resume-playback-renderer>
+  <div id="progress" style="width: 10%;"></div>
+</ytd-thumbnail-overlay-resume-playback-renderer>
+
+I think this is all I need, now I want to count the total duration of the whole playlist and show how much have been watched
+    and how much rest on a new div element that show appear on the header element
+
+    <div id="secondary">
+      <div id="secondary-inner">
+        <div id="panels">
+            <ytd-playlist-panel-renderer>
+              
+            </ytd-playlist-panel-renderer>
+        </div>
+      </div>
+    </div>

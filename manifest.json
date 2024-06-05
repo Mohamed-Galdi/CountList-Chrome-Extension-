@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "CountList",
+  "version": "1.0",
+  "description": "Count the total duration of a YouTube playlist",
+  "permissions": ["activeTab", "scripting"],
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["contentScript.js"]
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
