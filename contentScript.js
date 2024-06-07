@@ -37,11 +37,61 @@ window.addEventListener("load", function () {
     return playlistPanel && !playlistPanel.hasAttribute("hidden");
   }
 
+  // Function to create the duration element
+  function createDurationElement(
+    totalDuration,
+    watchedDuration,
+    remainingDuration
+  ) {
+    const durationElement = document.createElement("div");
+    durationElement.id = "playlist-duration-element";
+    durationElement.classList.add("playlist-duration");
+
+    const textContainer = document.createElement("div"); // Create a wrapper div for text elements
+    textContainer.classList.add("text-container");
+
+    const progressContainer = document.createElement("div");
+    progressContainer.classList.add("progress-container");
+
+    const totalText = document.createElement("p");
+    totalText.textContent = `Total: ${formatTime(totalDuration)}`;
+    totalText.classList.add("total-duration");
+
+    const watchedText = document.createElement("p");
+    watchedText.textContent = `Watched: ${formatTime(watchedDuration)}`;
+    watchedText.classList.add("watched-duration");
+
+    const remainingText = document.createElement("p");
+    remainingText.textContent = `Remaining: ${formatTime(remainingDuration)}`;
+    remainingText.classList.add("remaining-duration");
+
+    const progressBar = document.createElement("div");
+    progressBar.classList.add("progress-bar");
+
+    progressBar.style.width = `${(watchedDuration / totalDuration) * 100}%`;
+
+    // Append text elements to the text container
+    textContainer.appendChild(totalText);
+    textContainer.appendChild(watchedText);
+    textContainer.appendChild(remainingText);
+
+    progressContainer.appendChild(progressBar);
+
+    // Append the text container and progress bar as siblings
+    durationElement.appendChild(textContainer);
+    durationElement.appendChild(progressContainer);
+
+    return durationElement;
+  }
+
   // Function to calculate durations and display them
   function calculateAndDisplayDurations() {
     const playlistPanel = document.querySelector(
       "#secondary #secondary-inner ytd-playlist-panel-renderer:last-of-type"
     );
+    if (!playlistPanel) {
+      return; // Playlist panel not found, exit the function
+    }
     const videos = playlistPanel.querySelectorAll(
       "ytd-playlist-panel-video-renderer"
     );
@@ -73,24 +123,30 @@ window.addEventListener("load", function () {
 
     let durationElement = document.querySelector("#playlist-duration-element");
     if (!durationElement) {
-      durationElement = document.createElement("div");
-      durationElement.id = "playlist-duration-element";
-      durationElement.style.backgroundColor = "white";
-      durationElement.style.padding = "10px";
-      durationElement.style.border = "1px solid black";
-      durationElement.style.marginTop = "10px";
-
+      durationElement = createDurationElement(
+        totalDuration,
+        watchedDuration,
+        remainingDuration
+      );
       const headerElement = playlistPanel.querySelector("#container .header");
       if (headerElement) {
         headerElement.appendChild(durationElement);
       }
-    }
+    } else {
+      const totalText = durationElement.querySelector("p.total-duration");
+      totalText.textContent = `Total: ${formatTime(totalDuration)}`;
 
-    durationElement.textContent = `Total: ${formatTime(
-      totalDuration
-    )}, Watched: ${formatTime(watchedDuration)}, Remaining: ${formatTime(
-      remainingDuration
-    )}`;
+      const watchedText = durationElement.querySelector("p.watched-duration");
+      watchedText.textContent = `Watched: ${formatTime(watchedDuration)}`;
+
+      const remainingText = durationElement.querySelector(
+        "p.remaining-duration"
+      );
+      remainingText.textContent = `Remaining: ${formatTime(remainingDuration)}`;
+
+      const pgb = durationElement.querySelector(".progress-bar");
+      pgb.style.width = `${(watchedDuration / totalDuration) * 100}%`;
+    }
   }
 
   // Observe for changes in the DOM to detect when the playlist becomes visible
