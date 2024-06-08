@@ -2,11 +2,14 @@
   "manifest_version": 3,
   "name": "CountList",
   "version": "1.0",
-  "description": "Count the total duration of a YouTube playlist",
-  "permissions": ["activeTab", "scripting"],
+  "description": "Shows the total, watched, and remaining time of a YouTube playlist.",
+  "permissions": ["storage", "activeTab", "scripting"],
+  "background": {
+    "service_worker": "background.js"
+  },
   "content_scripts": [
     {
-      "matches": ["https://www.youtube.com/*"],
+      "matches": ["*://www.youtube.com/*"],
       "js": ["contentScript.js"],
       "css": ["style.css"]
     }

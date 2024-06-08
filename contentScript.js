@@ -121,6 +121,13 @@ window.addEventListener("load", function () {
 
     const remainingDuration = totalDuration - watchedDuration;
 
+    // Store the durations in Chrome storage
+    chrome.storage.local.set({
+      totalDuration,
+      watchedDuration,
+      remainingDuration,
+    });
+
     let durationElement = document.querySelector("#playlist-duration-element");
     if (!durationElement) {
       durationElement = createDurationElement(
@@ -146,6 +153,12 @@ window.addEventListener("load", function () {
 
       const pgb = durationElement.querySelector(".progress-bar");
       pgb.style.width = `${(watchedDuration / totalDuration) * 100}%`;
+
+      chrome.storage.local.set({
+        totalDuration,
+        watchedDuration,
+        remainingDuration,
+      });
     }
   }
 

@@ -1,0 +1,98 @@
+body {
+    font-family: monospace;
+    width: 400px;
+    background-color: white;
+    padding: 10px;
+    font-weight: bold;
+    font-size: medium;
+    text-align: center;
+}
+
+/* .duration {
+    margin-bottom: 10px;
+} */
+.durations{
+    display: grid;
+    grid-template-columns: 10% 28% 28% 28%;
+    grid-template-rows: 40px 20px 20px 20px;
+    column-gap: 10px;
+    
+}
+
+.total-duration {
+    background-color: #9cc6ff;
+    color: #3966ee;
+    padding: 3px;
+    border: 1px #3966ee solid;
+    border-radius: 5px;
+}
+.watched-duration {
+    background-color: #ffabab;
+    color: #ce1321;
+    padding: 3px;
+    border: 1px #ce1321 solid;
+    border-radius: 5px;
+}
+ .remaining-duration {
+     background-color: rgb(254 240 138);
+     color: #c48800;
+     padding: 3px;
+     border: 1px #c48800 solid;
+     border-radius: 5px;
+ }
+
+ .speed{
+    text-align: start;
+ }
+ .x1-25{
+    color: #000000;
+ }
+ .x1-5{
+    color: #666666;
+ }
+ .x1-75{
+    color: #999999;
+ }
+ .x2{
+    color: #b3b3b3;
+ }
+ /* ////////// */
+ #estimated-total-1-25{
+    color: #4669f2;
+ }
+ #estimated-total-1-5{
+    color: #6b87f5;
+ }
+ #estimated-total-1-75{
+    color: #90a5f7;
+ }
+ #estimated-total-2{
+    color: #b5c3fa;
+ }
+ /* ////////// */
+ #estimated-watched-1-25{
+    color: #c1001d;
+ }
+ #estimated-watched-1-5{
+    color: #cd334a;
+ }
+ #estimated-watched-1-75{
+    color: #da6677;
+ }
+ #estimated-watched-2{
+    color: #e699a5;
+ }
+ /* ////////// */
+ #estimated-remaining-1-25{
+    color: #bd8600;
+ }
+ #estimated-remaining-1-5{
+    color: #ca9e33;
+ }
+ #estimated-remaining-1-75{
+    color: #d7b666;
+ }
+ #estimated-remaining-2{
+    color: #e5cf99;
+ }
+ 

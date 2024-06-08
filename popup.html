@@ -1,16 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        h1{
-            font-family: monospace
-        }
-    </style>
-</head>
-<body>
-    <h1>CountList</h1>
-</body>
+<html>
+  <head>
+    <title>Playlist Duration</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <div class="durations">
+      <div class="" id=""></div>
+      <div class="total-duration" id="total-duration">Total: 00:00:00</div>
+      <div class="watched-duration" id="watched-duration">
+        Watched: 00:00:00
+      </div>
+      <div class="remaining-duration" id="remaining-duration">
+        Remaining: 00:00:00
+      </div>
+
+      <div class="speed x1-25">1.25x:</div>
+      <div class="duration" id="estimated-total-1-25">00:00:00</div>
+      <div class="duration" id="estimated-watched-1-25">00:00:00</div>
+      <div class="duration" id="estimated-remaining-1-25">00:00:00</div>
+      <div class="speed x1-5">1.5x:</div>
+      <div class="duration" id="estimated-total-1-5">00:00:00</div>
+      <div class="duration" id="estimated-watched-1-5">00:00:00</div>
+      <div class="duration" id="estimated-remaining-1-5">00:00:00</div>
+      <div class="speed x1-75">1.75x:</div>
+      <div class="duration" id="estimated-total-1-75">00:00:00</div>
+      <div class="duration" id="estimated-watched-1-75">00:00:00</div>
+      <div class="duration" id="estimated-remaining-1-75">00:00:00</div>
+      <div class="speed x2">2x:</div>
+      <div class="duration" id="estimated-total-2">00:00:00</div>
+      <div class="duration" id="estimated-watched-2">00:00:00</div>
+      <div class="duration" id="estimated-remaining-2">00:00:00</div>
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
 </html>
