@@ -81,9 +81,19 @@ document.addEventListener("DOMContentLoaded", function () {
     if (url.hostname === "www.youtube.com" || url.hostname === "youtube.com") {
       // Retrieve values from Chrome storage and update durations
       chrome.storage.local.get(
-        ["totalDuration", "watchedDuration", "remainingDuration"],
+        [
+          "totalDuration",
+          "watchedDuration",
+          "remainingDuration",
+          "playlistVisible",
+        ],
         function (result) {
-          updateDurations(result);
+          if (result.playlistVisible) {
+            updateDurations(result);
+          } else {
+            document.body.innerHTML =
+              "<p>No playlist is currently open. Please open a YouTube playlist to see the durations.</p>";
+          }
         }
       );
     } else {

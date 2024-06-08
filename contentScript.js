@@ -90,7 +90,9 @@ window.addEventListener("load", function () {
       "#secondary #secondary-inner ytd-playlist-panel-renderer:last-of-type"
     );
     if (!playlistPanel) {
-      return; // Playlist panel not found, exit the function
+      // No playlist panel found, clear previous data and save flag
+      chrome.storage.local.set({ playlistVisible: false });
+      return;
     }
     const videos = playlistPanel.querySelectorAll(
       "ytd-playlist-panel-video-renderer"
@@ -121,13 +123,6 @@ window.addEventListener("load", function () {
 
     const remainingDuration = totalDuration - watchedDuration;
 
-    // Store the durations in Chrome storage
-    chrome.storage.local.set({
-      totalDuration,
-      watchedDuration,
-      remainingDuration,
-    });
-
     let durationElement = document.querySelector("#playlist-duration-element");
     if (!durationElement) {
       durationElement = createDurationElement(
@@ -153,13 +148,15 @@ window.addEventListener("load", function () {
 
       const pgb = durationElement.querySelector(".progress-bar");
       pgb.style.width = `${(watchedDuration / totalDuration) * 100}%`;
-
-      chrome.storage.local.set({
-        totalDuration,
-        watchedDuration,
-        remainingDuration,
-      });
     }
+
+    // Save durations and flag to storage
+    chrome.storage.local.set({
+      totalDuration,
+      watchedDuration,
+      remainingDuration,
+      playlistVisible: true,
+    });
   }
 
   // Observe for changes in the DOM to detect when the playlist becomes visible
@@ -174,5 +171,7 @@ window.addEventListener("load", function () {
   // Initial check in case the playlist is already visible on page load
   if (isPlaylistVisible()) {
     calculateAndDisplayDurations();
+  } else {
+    chrome.storage.local.set({ playlistVisible: false });
   }
 });
